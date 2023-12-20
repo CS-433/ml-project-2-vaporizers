@@ -42,7 +42,7 @@ from google.colab import drive
 drive.mount('/content/gdrive')
 ```
 
-Our implementation supports the usage of a GPU to accelerate the training phase. In this setting, you can expect a training time for a single model between 1 and 2 minutes. Instead, if you use a CPU, you can expect a training time of about 5 minutes.
+Our implementation supports the usage of a GPU to accelerate the training phase. In this setting, you can expect a training time for a single model between 1 and 2 minutes. Instead, if you use a CPU, you can expect a training time between 3 and 5 minutes.
 
 **Disclaimer**: all our experiments have been performed with the NVIDIA Tesla T4 GPU provided by Google Colab. Reproducibility is not guaranteed on other hardware.
 
