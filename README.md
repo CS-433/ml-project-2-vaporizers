@@ -18,8 +18,6 @@ Our best models are the following:
 ### Project structure
 
 This repository is structured as follows:
-- [RB_data](RB_data): folder containing the snapshots used to train the models, i.e. parameters instances and corresponding solutions (of velocity and pressure);
-- [basis](basis): folder containing the POD bases and singular values;
 - [load_data.py](load_data.py): Python file containing a function to load the dataset;
 - [models.py](models.py): Python file containing the classes for the final models (of velocity and pressure);
 - [training.py](training.py): Python file containing the main training routines both for the standard and the weighted MSE losses;
