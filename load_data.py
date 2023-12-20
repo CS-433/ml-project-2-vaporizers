@@ -12,11 +12,11 @@ def load_data():
 	basis_time, sv_time, Nh_time, nmodes_time = dict(), dict(), dict(), dict()
 	nmodes = dict()
 	for field in fields:
-		basis_space[field] = np.load(os.path.join('basis', field, 'space_basis.npy'))
-		sv_space[field] = np.load(os.path.join('basis', field, 'space_sv.npy'))
+		basis_space[field] = np.load(os.path.join('dataset/basis', field, 'space_basis.npy'))
+		sv_space[field] = np.load(os.path.join('dataset/basis', field, 'space_sv.npy'))
 		Nh_space[field], nmodes_space[field] = basis_space[field].shape
-		basis_time[field] = np.load(os.path.join('basis', field, 'time_basis.npy'))
-		sv_time[field] = np.load(os.path.join('basis', field, 'time_sv.npy'))
+		basis_time[field] = np.load(os.path.join('dataset/basis', field, 'time_basis.npy'))
+		sv_time[field] = np.load(os.path.join('dataset/basis', field, 'time_sv.npy'))
 		Nh_time[field], nmodes_time[field] = basis_time[field].shape
 		nmodes[field] = nmodes_space[field] * nmodes_time[field]
 
@@ -45,7 +45,7 @@ def load_data():
 	# Step 2: load the solutions
 
 	n_snaps = None
-	_sol = np.load(os.path.join('RB_data', 'solutions.npy'))[:n_snaps]
+	_sol = np.load(os.path.join('dataset/RB_data', 'solutions.npy'))[:n_snaps]
 
 	solutions = dict()
 
@@ -60,7 +60,7 @@ def load_data():
 
 	# Step 3: load the parameters
 
-	params = np.load(os.path.join('RB_data', 'parameters.npy'))
+	params = np.load(os.path.join('dataset/RB_data', 'parameters.npy'))
 	params = np.delete(params, 2, axis=1)
 
 	return params, solutions, basis_space, basis_time, sv_space, sv_time
