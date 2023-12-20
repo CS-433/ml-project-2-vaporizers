@@ -248,11 +248,11 @@ def run_training_weighted(train_gen, val_gen, num_epochs, model, sv, lr, device=
     errors_val = []
 
     for epoch in range(num_epochs):
-        loss, err = train_epoch(model, train_gen, optimizer, criterion, scheduler, sv, device, epoch)
+        loss, err = train_epoch_weighted(model, train_gen, optimizer, criterion, scheduler, sv, device, epoch)
         losses.append(loss)
         errors.append(err)
         if val_gen != None:
-            loss_val, err_val = validate(model, val_gen, criterion, sv, device, epoch)
+            loss_val, err_val = validate_weighted(model, val_gen, criterion, sv, device, epoch)
             losses_val.append(loss_val)
             errors_val.append(err_val)
 
