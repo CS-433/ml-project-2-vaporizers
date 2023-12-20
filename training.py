@@ -122,6 +122,8 @@ def run_training(train_gen, val_gen, num_epochs, model, lr, device='cpu'):
 def compute_error(model, dataloader, device):
 
     model.eval()
+    
+    error = 0
 
     for batch_idx, data in enumerate(dataloader):
         inputs = data['feature']
@@ -131,9 +133,11 @@ def compute_error(model, dataloader, device):
 
         outputs = model(inputs)
 
-        error = torch.mean(torch.linalg.norm(labels - outputs, dim=1) / torch.linalg.norm(labels, dim=1)).item()
+        error += torch.mean(torch.linalg.norm(labels - outputs, dim=1) / torch.linalg.norm(labels, dim=1)).item()
+    
+    error = error / len(dataloader.dataset)
 
-    return error, outputs
+    return error
 
 
 def transform(v):
@@ -283,6 +287,8 @@ def run_training_weighted(train_gen, val_gen, num_epochs, model, sv, lr, device=
 def compute_error_weighted(model, dataloader, device):
 
     model.eval()
+    
+    error = 0
 
     for batch_idx, data in enumerate(dataloader):
         inputs = data['feature']
@@ -295,6 +301,8 @@ def compute_error_weighted(model, dataloader, device):
         # Anti-trasform outputs
         outputs = inv_transform(outputs)
 
-        error = torch.mean(torch.linalg.norm(labels - outputs, dim=1) / torch.linalg.norm(labels, dim=1)).item()
+        error += torch.mean(torch.linalg.norm(labels - outputs, dim=1) / torch.linalg.norm(labels, dim=1)).item()
+        
+    error = error / len(dataloader.dataset)
 
-    return error, outputs
+    return error
