@@ -31,10 +31,20 @@ This repository is structured as follows:
 
 You can access the dataset at this [SWITCHDrive link](https://drive.switch.ch/index.php/s/FT3uQF4gNXrtgaO). Download the ```dataset``` folder, unzip it, and place it in the repository. Make sure that ```dataset``` contains the folders ```basis``` and ```RB_data``` (WITHOUT another ```dataset``` nested folder).
 
-run locale vs colab (reproducibility su colab)
-tempi di training 
+If you want to run the Jupyter notebooks on your local machine, we recommend creating a conda environment and installing there all the required libraries by running:
+```
+pip install -r requirements.txt
+```
 
+If you want to run the Jupyter notebooks on Google Colab, copy the repository on your Google Drive and, at the beginning of the notebook, allow Colab to access the other files in the repository by adding the following cell:
+```
+from google.colab import drive
+drive.mount('/content/gdrive')
+```
 
+Our implementation supports the usage of a GPU to accelerate the training phase. In this setting, you can expect a training time for a single model between 1 and 2 minutes. Instead, if you use a CPU, you can expect a training time between 3 and 5 minutes.
+
+**Disclaimer**: all our experiments have been performed with the NVIDIA Tesla T4 GPU provided by Google Colab. Reproducibility is not guaranteed on other hardware.
 
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/fEFF99tU)
 [![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-718a45dd9cf7e7f842a935f5ebbe5719a5e09af4491e668f4dbf3b35d5cca122.svg)](https://classroom.github.com/online_ide?assignment_repo_id=13272957&assignment_repo_type=AssignmentRepo)
