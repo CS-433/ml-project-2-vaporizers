@@ -133,11 +133,34 @@ def compute_error(model, dataloader, device):
 
         outputs = model(inputs)
 
-        error += torch.mean(torch.linalg.norm(labels - outputs, dim=1) / torch.linalg.norm(labels, dim=1)).item()
+        error += torch.sum(torch.linalg.norm(labels - outputs, dim=1) / torch.linalg.norm(labels, dim=1)).item()
     
     error = error / len(dataloader.dataset)
 
     return error
+
+
+@torch.no_grad()
+def predict(model, dataloader, device):
+    '''
+    Output the predictions of the trained model.
+    Input: 
+    - model
+    - dataloader: loader of the dataset, containing ONLY ONE BATCH
+    - device
+    Output:
+    - outputs: predictions of the model
+    '''
+
+    model.eval()
+    
+    for batch_idx, data in enumerate(dataloader):
+        inputs = data['feature']
+        inputs = inputs.to(device)
+
+        outputs = model(inputs)
+
+    return outputs
 
 
 def transform(v):
@@ -301,8 +324,34 @@ def compute_error_weighted(model, dataloader, device):
         # Anti-trasform outputs
         outputs = inv_transform(outputs)
 
-        error += torch.mean(torch.linalg.norm(labels - outputs, dim=1) / torch.linalg.norm(labels, dim=1)).item()
+        error += torch.sum(torch.linalg.norm(labels - outputs, dim=1) / torch.linalg.norm(labels, dim=1)).item()
         
     error = error / len(dataloader.dataset)
 
     return error
+
+
+@torch.no_grad()
+def predict_weighted(model, dataloader, device):
+    '''
+    Output the predictions of the trained model.
+    Input: 
+    - model
+    - dataloader: loader of the dataset, containing ONLY ONE BATCH
+    - device
+    Output:
+    - outputs: predictions of the model
+    '''
+
+    model.eval()
+    
+    for batch_idx, data in enumerate(dataloader):
+        inputs = data['feature']
+        inputs = inputs.to(device)
+
+        outputs = model(inputs)
+
+        # Anti-trasform outputs
+        outputs = inv_transform(outputs)
+
+    return outputs
