@@ -29,7 +29,7 @@ This repository is structured as follows:
 
 ### How to run
 
-You can access the dataset at this [SWITCHDrive link](https://drive.switch.ch/index.php/s/FT3uQF4gNXrtgaO). Download the ```dataset``` folder, unzip it, and place it in the repository.
+You can access the dataset at this [SWITCHDrive link](https://drive.switch.ch/index.php/s/FT3uQF4gNXrtgaO). Download the ```dataset``` folder, unzip it, and place it in the repository. Make sure that ```dataset``` contains the folders ```basis``` and ```RB_data``` (WITHOUT another ```dataset``` nested folder).
 
 run locale vs colab (reproducibility su colab)
 tempi di training 
