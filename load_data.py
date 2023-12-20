@@ -1,6 +1,7 @@
 import os
 import numpy as np
 
+
 def load_data():
 
 	# Step 1: load the bases
