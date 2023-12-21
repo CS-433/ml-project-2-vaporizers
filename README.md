@@ -15,9 +15,9 @@ We train two separate models for velocity and pressure. In both cases, the best 
 
 ### Project structure
 
-This repository is structured as follows:
+This repository contains the following files:
 - [load_data.py](load_data.py): Python file containing a function to load the dataset;
-- [models.py](models.py): Python file containing the classes for the final models (of velocity and pressure);
+- [models.py](models.py): Python file containing the classes for the final models of velocity and pressure;
 - [training.py](training.py): Python file containing the main training routines both for the standard and the weighted MSE losses;
 - [run.ipynb](run.ipynb): Jupyter Notebook to train the final models with the standard loss;
 - [run_weighted.ipynb](run_weighted.ipynb): Jupyter Notebook to train the final models with the weighted loss;
