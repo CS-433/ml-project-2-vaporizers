@@ -21,22 +21,22 @@ This repository is structured as follows:
 - [load_data.py](load_data.py): Python file containing a function to load the dataset;
 - [models.py](models.py): Python file containing the classes for the final models (of velocity and pressure);
 - [training.py](training.py): Python file containing the main training routines both for the standard and the weighted MSE losses;
-- [run.ipynb](run.ipynb): Jupyter notebook to train the final models with the standard loss;
-- [run_weighted.ipynb](run_weighted.ipynb): Jupyter notebook to train the final models with the weighted loss;
-- [run_cross_validation.ipynb](run_cross_validation.ipynb): Jupyter notebook to perform a 5-fold cross-validation with the standard loss;
-- [run_cross_validation_weighted.ipynb](run_cross_validation_weighted.ipynb): Jupyter notebook to perform a 5-fold cross-validation with the weighted loss;
+- [run.ipynb](run.ipynb): Jupyter Notebook to train the final models with the standard loss;
+- [run_weighted.ipynb](run_weighted.ipynb): Jupyter Notebook to train the final models with the weighted loss;
+- [run_cross_validation.ipynb](run_cross_validation.ipynb): Jupyter Notebook to perform a 5-fold cross-validation with the standard loss;
+- [run_cross_validation_weighted.ipynb](run_cross_validation_weighted.ipynb): Jupyter Notebook to perform a 5-fold cross-validation with the weighted loss;
 - [requirements.txt](requirements.txt): file containing the dependencies needed to run the notebooks.
 
 ### How to run
 
 You can access the dataset at this [SWITCHDrive link](https://drive.switch.ch/index.php/s/FT3uQF4gNXrtgaO). Download the ```dataset``` folder, unzip it, and place it in the repository. Make sure that ```dataset``` contains the folders ```basis``` and ```RB_data``` (WITHOUT another ```dataset``` nested folder).
 
-If you want to run the Jupyter notebooks on your local machine, we recommend creating a conda environment and installing there all the required libraries by running:
+If you want to run the notebooks on your local machine, we recommend creating a conda environment with Jupyter Notebook installed. Then, install the required libraries in the environment by running:
 ```
 pip install -r requirements.txt
 ```
 
-If you want to run the Jupyter notebooks on Google Colab, copy the repository on your Google Drive and, at the beginning of the notebook, allow Colab to access the other files in the repository by adding the following cell:
+If you want to run the notebooks on Google Colab, copy the repository on your Google Drive and, at the beginning of the notebook, allow Colab to access the other files in the repository by adding the following cell:
 ```
 from google.colab import drive
 drive.mount('/content/gdrive')
