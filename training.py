@@ -5,6 +5,19 @@ import matplotlib.pyplot as plt
 
 
 def train_epoch(model, dataloader, optimizer, criterion, scheduler, device, epoch):
+    """ Train the model for one epoch.
+    Args:
+        model: model to train
+        dataloader: loader of the dataset
+        optimizer: optimizer
+        criterion: loss function
+        scheduler: scheduler
+        device: device to use
+        epoch: current epoch
+    Returns:
+        mean_loss: mean loss over the entire dataset
+        mean_error: mean error over the entire dataset
+    """
 
     model.train()
 
@@ -48,6 +61,17 @@ def train_epoch(model, dataloader, optimizer, criterion, scheduler, device, epoc
 
 @torch.no_grad()
 def validate(model, dataloader, criterion, device, epoch):
+    """ Validate the model.
+    Args:
+        model: model to validate
+        dataloader: loader of the dataset
+        criterion: loss function
+        device: device to use
+        epoch: current epoch
+    Returns:
+        loss: loss over the entire dataset
+        error: error over the entire dataset
+    """
 
     model.eval()
 
@@ -74,6 +98,20 @@ def validate(model, dataloader, criterion, device, epoch):
 
 
 def run_training(train_gen, val_gen, num_epochs, model, lr, device='cpu'):
+    """ Run the training.
+    Args:
+        train_gen: generator of the training set
+        val_gen: generator of the validation set
+        num_epochs: number of epochs
+        model: model to train
+        lr: learning rate
+        device: device to use
+    Returns:
+        losses: list of training losses
+        losses_val: list of validation losses
+        errors: list of training errors
+        errors_val: list of validation errors
+    """
 
     model = model.to(device)
 
@@ -120,6 +158,14 @@ def run_training(train_gen, val_gen, num_epochs, model, lr, device='cpu'):
 
 @torch.no_grad()
 def compute_error(model, dataloader, device):
+    """ Compute the error.
+    Args:
+        model: model to use
+        dataloader: loader of the dataset
+        device: device to use
+    Returns:
+        error: error over the entire dataset
+    """
 
     model.eval()
     
@@ -142,15 +188,14 @@ def compute_error(model, dataloader, device):
 
 @torch.no_grad()
 def predict(model, dataloader, device):
-    '''
-    Output the predictions of the trained model.
-    Input: 
-    - model
-    - dataloader: loader of the dataset, containing ONLY ONE BATCH
-    - device
-    Output:
-    - outputs: predictions of the model
-    '''
+    """ Output the predictions of the trained model.
+    Args:
+        model: model to use
+        dataloader: loader of the dataset, containing ONLY ONE BATCH
+        device: device to use
+    Returns:
+        outputs: predictions of the model
+    """
 
     model.eval()
     
@@ -164,14 +209,40 @@ def predict(model, dataloader, device):
 
 
 def transform(v):
+    """ Transform the labels.
+    Args:
+        v: labels
+    Returns:
+        v: transformed labels
+    """
     return torch.sign(v) * torch.log(torch.abs(v) + 1)
 
 
 def inv_transform(v):
+    """ Inverse transform the labels.
+    Args:   
+        v: transformed labels
+    Returns:
+        v: labels
+    """
     return torch.sign(v) * (torch.exp(torch.abs(v)) - 1)
 
 
 def train_epoch_weighted(model, dataloader, optimizer, criterion, scheduler, sv, device, epoch):
+    """ Train the model with the weighted loss for one epoch.
+    Args:
+        model: model to train
+        dataloader: loader of the dataset
+        optimizer: optimizer
+        criterion: loss function
+        scheduler: scheduler
+        sv: singular values
+        device: device to use
+        epoch: current epoch
+    Returns:
+        mean_loss: mean loss over the entire dataset
+        mean_error: mean error over the entire dataset
+    """
 
     model.train()
 
@@ -222,6 +293,18 @@ def train_epoch_weighted(model, dataloader, optimizer, criterion, scheduler, sv,
 
 @torch.no_grad()
 def validate_weighted(model, dataloader, criterion, sv, device, epoch):
+    """ Validate the model with the weighted loss.
+    Args:
+        model: model to validate
+        dataloader: loader of the dataset
+        criterion: loss function
+        sv: singular values
+        device: device to use
+        epoch: current epoch
+    Returns:
+        loss: loss over the entire dataset
+        error: error over the entire dataset
+    """
 
     model.eval()
 
@@ -257,6 +340,21 @@ def validate_weighted(model, dataloader, criterion, sv, device, epoch):
 
 
 def run_training_weighted(train_gen, val_gen, num_epochs, model, sv, lr, device='cpu'):
+    """ Run the training with the weighted loss.
+    Args:
+        train_gen: generator of the training set
+        val_gen: generator of the validation set
+        num_epochs: number of epochs
+        model: model to train
+        sv: singular values
+        lr: learning rate
+        device: device to use
+    Returns:
+        losses: list of training losses
+        losses_val: list of validation losses
+        errors: list of training errors
+        errors_val: list of validation errors
+    """
 
     model = model.to(device)
     sv = sv.to(device)
@@ -308,6 +406,14 @@ def run_training_weighted(train_gen, val_gen, num_epochs, model, sv, lr, device=
 
 @torch.no_grad()
 def compute_error_weighted(model, dataloader, device):
+    """ Compute the error with the weighted loss.
+    Args:
+        model: model to use
+        dataloader: loader of the dataset
+        device: device to use
+    Returns:
+        error: error over the entire dataset
+    """
 
     model.eval()
     
@@ -333,15 +439,14 @@ def compute_error_weighted(model, dataloader, device):
 
 @torch.no_grad()
 def predict_weighted(model, dataloader, device):
-    '''
-    Output the predictions of the trained model.
-    Input: 
-    - model
-    - dataloader: loader of the dataset, containing ONLY ONE BATCH
-    - device
-    Output:
-    - outputs: predictions of the model
-    '''
+    """ Output the predictions of the trained model with the weighted loss.
+    Args:
+        model: model to use
+        dataloader: loader of the dataset, containing ONLY ONE BATCH
+        device: device to use
+    Returns:
+        outputs: predictions of the model
+    """
 
     model.eval()
     

@@ -3,6 +3,17 @@ import numpy as np
 
 
 def load_data():
+	""" Load the data from the dataset folder.
+    Args:
+		None
+	Returns:
+		params: array of parameters
+		solutions: dictionary of solutions
+		basis_space: dictionary of spatial bases
+		basis_time: dictionary of temporal bases
+		sv_space: dictionary of spatial singular values
+		sv_time: dictionary of temporal singular values
+    """
 
 	# Step 1: load the bases
 
