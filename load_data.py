@@ -7,12 +7,12 @@ def load_data():
     Args:
 		None
 	Returns:
-		params: array of parameters
-		solutions: dictionary of solutions
-		basis_space: dictionary of spatial bases
-		basis_time: dictionary of temporal bases
-		sv_space: dictionary of spatial singular values
-		sv_time: dictionary of temporal singular values
+		params: array of parameters of shape (2000, 6)
+		solutions: dictionary of solutions, each solution is an array of shape (2000, Ns', Nt')
+		basis_space: dictionary of spatial bases, each basis is an array of shape (Ns, Ns')
+		basis_time: dictionary of temporal bases, each basis is an array of shape (Nt, Nt')
+		sv_space: dictionary of spatial singular values, each array of shape (Ns',)
+		sv_time: dictionary of temporal singular values, each array of shape (Nt',)
     """
 
 	# Step 1: load the bases
@@ -78,12 +78,26 @@ def load_data():
 
 
 def project(sol, basis_space, basis_time):
-    """ Project a full-order solution in space-time."""
+    """ Project a full-order solution in space-time.
+    Args:
+		sol: array of shape (Ns, Nt)
+		basis_space: array of shape (Ns, Ns')
+		basis_time: array of shape (Nt, Nt')
+	Returns:
+		sol: array of shape (Ns', Nt')
+        """
 
     return (basis_space.T.dot(sol)).dot(basis_time)
 
 
 def expand(sol, basis_space, basis_time):
-    """ Expand a reduced-order solution in space-time."""
+    """ Expand a reduced-order solution in space-time.
+    Args:
+		sol: array of shape (Ns', Nt')
+		basis_space: array of shape (Ns, Ns')
+		basis_time: array of shape (Nt, Nt')
+	Returns:
+		sol: array of shape (Ns, Nt)
+        """
 
     return (basis_space.dot(sol)).dot(basis_time.T)
