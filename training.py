@@ -363,7 +363,7 @@ def run_training_weighted(train_gen, val_gen, num_epochs, model, sv, lr, device=
         # for each row, compute f(sv) * (outputs - labels) ** 2 (dot product)
         return torch.mean(torch.matmul(sv, (outputs - labels).T ** 2))
 
-    optimizer = torch.optim.Adam(model.parameters(), lr=lr)
+    optimizer = torch.optim.Adam(model.parameters(), lr=lr, weight_decay=1e-5)
     criterion = MSELossWeightedSV
     scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=50, gamma=0.99)
 
