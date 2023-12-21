@@ -11,9 +11,7 @@ The baseline models for both velocity and pressure are inspired by the implement
 
 For the choice of the loss function, we adopt two different approaches: (1) a standard MSE loss, and (2) a weighted MSE loss embedding the physical information contained in the singular values computed during the POD procedure. The first approach significantly outperforms the second one.
 
-Our best models are the following:
-- Velocity: 4 hidden layers, 256 neurons per layer, GELU activation function, layer normalization;
-- Pressure: 3 hidden layers, 256 neurons per layer, GELU activation function, layer normalization.
+We train two separate models for velocity and pressure. In both cases, the best model contains 4 hidden layers, 256 neurons per layer, the GELU activation function, and layer normalization.
 
 ### Project structure
 
