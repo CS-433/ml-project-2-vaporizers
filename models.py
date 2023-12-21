@@ -64,6 +64,9 @@ class PTCMapPressure(Module):
         self.linear3 = Linear(K, K)
         self.norm3 = LayerNorm(K)
         self.activation3 = GELU()
+        self.linear4 = Linear(K, K)
+        self.norm4 = LayerNorm(K)
+        self.activation4 = GELU()
         self.linearf = Linear(K, space * time)
 
         self.apply(self._init_weights)
@@ -84,5 +87,8 @@ class PTCMapPressure(Module):
         x = self.linear3(x)
         x = self.norm3(x)
         x = self.activation3(x)
+        x = self.linear4(x)
+        x = self.norm4(x)
+        x = self.activation4(x)
         x = self.linearf(x)
         return x
