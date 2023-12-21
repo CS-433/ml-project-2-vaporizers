@@ -39,6 +39,10 @@ If you want to run the notebooks on Google Colab, copy the repository on your Go
 from google.colab import drive
 drive.mount('/content/gdrive')
 ```
+Then, move to the project directory by adding the following cell:
+```
+%cd <ml-project-2-vaporizers-directory>
+```
 
 Our implementation supports the usage of a GPU to accelerate the training phase. In this setting, you can expect a training time for a single model between 1 and 2 minutes. Instead, if you use a CPU, you can expect a training time between 3 and 5 minutes.
 
